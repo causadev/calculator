@@ -4,27 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/style.css" />
-    <title>Document</title>
+    <title>Odin Calculator</title>
   </head>
   <body>
     <div class="container">
-      <p class="display"></p>
-      <button class="clearBtn">Clear</button>
-      <button class="add">+</button>
-      <button class="subtract">-</button>
-      <button class="multiply">×</button>
-      <button class="divide">÷</button>
-      <button class="number">7</button>
-      <button class="number">8</button>
-      <button class="number">9</button>
-      <button class="number">4</button>
-      <button class="number">5</button>
-      <button class="number">6</button>
-      <button class="number">1</button>
-      <button class="number">2</button>
-      <button class="number">3</button>
-      <button class="number">0</button>
-      <button class="equals">=</button>
+      <div class="calculator">
+        <div class="calculatorDisplay">0</div>
+
+        <div class="calculator__keys">
+          <button id="key--operator" class="add">+</button>
+          <button id="key--operator" class="subtract">-</button>
+          <button id="key--operator" class="multiply">x</button>
+          <button id="key--operator" class="divide">÷</button>
+          <button class="number">7</button>
+          <button class="number">8</button>
+          <button class="number">9</button>
+          <button class="number">4</button>
+          <button class="number">5</button>
+          <button class="number">6</button>
+          <button class="number">1</button>
+          <button class="number">2</button>
+          <button class="number">3</button>
+          <button class="number">0</button>
+          <button class="clear">AC</button>
+          <button class="equalsKey">=</button>
+        </div>
+      </div>
     </div>
     <script src="/index.js"></script>
   </body>
