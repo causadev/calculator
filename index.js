@@ -8,7 +8,6 @@ const numbers = document.querySelectorAll(".number");
 const operators = document.querySelectorAll(".operator");
 const equals = document.querySelector(".equal");
 const clear = document.querySelector(".clear");
-let maxLenght = 12;
 
 clear.addEventListener("click", () => {
   firstNumber = "";
@@ -53,11 +52,10 @@ operators.forEach((op) =>
 
 numbers.forEach((number) =>
   number.addEventListener("click", (e) => {
-    if (displayValue.length <= maxLenght) {
       const key = e.target.textContent;
       displayValue += key;
       display.textContent = displayValue;
-    }
+    
   })
 );
 
