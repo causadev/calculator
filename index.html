@@ -4,18 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>Odin Calculator</title>
+    <link rel="stylesheet" href="">
+    <title>Calculator</title>
   </head>
   <body>
     <div class="container">
       <div class="calculator">
-        <div class="calculatorDisplay">0</div>
-
+        <div class="display"></div>
         <div class="calculator__keys">
-          <button id="key--operator" class="add">+</button>
-          <button id="key--operator" class="subtract">-</button>
-          <button id="key--operator" class="multiply">x</button>
-          <button id="key--operator" class="divide">÷</button>
+          <button class="operator" data-action="add">+</button>
+          <button class="operator" data-action="subtract">-</button>
+          <button class="operator" data-action="multiply">x</button>
+          <button class="operator" data-action="divide">÷</button>
           <button class="number">7</button>
           <button class="number">8</button>
           <button class="number">9</button>
@@ -26,8 +26,8 @@
           <button class="number">2</button>
           <button class="number">3</button>
           <button class="number">0</button>
-          <button class="clear">AC</button>
-          <button class="equalsKey">=</button>
+          <button class="clear">clear</button>
+          <button class="equal">=</button>
         </div>
       </div>
     </div>

@@ -2,84 +2,75 @@ let firstNumber = "";
 let secondNumber = "";
 let operator = "";
 let displayValue = "";
-const display = document.querySelector(".calculatorDisplay");
+let result = "";
+const display = document.querySelector(".display");
 const numbers = document.querySelectorAll(".number");
-const equals = document.querySelector(".equalsKey");
-const addBtn = document.querySelector(".add");
-const subtractBtn = document.querySelector(".subtract");
-const multiplyBtn = document.querySelector(".multiply");
-const divideBtn = document.querySelector(".divide");
-const clearBtn = document.querySelector(".clear");
+const operators = document.querySelectorAll(".operator");
+const equals = document.querySelector(".equal");
+const clear = document.querySelector(".clear");
+let maxLenght = 12;
 
-clearBtn.addEventListener("click", () => {
+clear.addEventListener("click", () => {
   firstNumber = "";
   secondNumber = "";
   operator = "";
   displayValue = "";
-  display.textContent = "0";
+  display.textContent = "";
 });
 
 equals.addEventListener("click", () => {
   secondNumber = displayValue;
-  if (secondNumber === "") {
-    return null;
+  result = operate(firstNumber, operator, secondNumber);
+  if (
+    firstNumber === "" ||
+    secondNumber === "" ||
+    operator === "" ||
+    displayValue === ""
+  ) {
+    return;
   } else {
-    return (display.textContent = operate(
-      parseFloat(firstNumber),
-      operator,
-      parseFloat(secondNumber)
-    ));
+    return (display.textContent = result);
   }
 });
 
-numbers.forEach((number) =>
-  number.addEventListener("click", (e) => {
-    const key = e.target;
-    const keyContent = key.textContent;
-    display.textContent = displayValue + keyContent;
-    displayValue = display.textContent;
+operators.forEach((op) =>
+  op.addEventListener("click", (e) => {
+    const opKey = e.target.textContent;
+    if (firstNumber === "") {
+      firstNumber = displayValue;
+    } else {
+      secondNumber = displayValue;
+      result = operate(firstNumber, operator, secondNumber);
+      display.textContent = result;
+      firstNumber = result;
+      secondNumber = "";
+    }
+
+    operator = opKey;
+    displayValue = "";
   })
 );
 
-addBtn.addEventListener("click", () => {
-  firstNumber = displayValue;
-  operator = "+";
-  displayValue = "";
-  firstNumber = display.textContent;
-});
-
-subtractBtn.addEventListener("click", () => {
-  firstNumber = displayValue;
-  operator = "-";
-  displayValue = "";
-  firstNumber = display.textContent;
-});
-
-multiplyBtn.addEventListener("click", () => {
-  firstNumber = displayValue;
-  operator = "*";
-  displayValue = "";
-  firstNumber = display.textContent;
-});
-
-divideBtn.addEventListener("click", () => {
-  firstNumber = displayValue;
-  operator = "÷";
-  displayValue = "";
-  firstNumber = display.textContent;
-});
+numbers.forEach((number) =>
+  number.addEventListener("click", (e) => {
+    if (displayValue.length <= maxLenght) {
+      const key = e.target.textContent;
+      displayValue += key;
+      display.textContent = displayValue;
+    }
+  })
+);
 
 function operate(n1, operator, n2) {
+  n1 = Number(n1);
+  n2 = Number(n2);
   if (operator === "+") {
     return add(n1, n2);
   } else if (operator === "-") {
     return subtract(n1, n2);
-  } else if (operator === "*") {
+  } else if (operator === "x") {
     return multiply(n1, n2);
   } else if (operator === "÷") {
-    if (n2 === 0) {
-      return (display.textContent = "ERROR");
-    }
     return divide(n1, n2);
   }
 }
@@ -97,5 +88,8 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
+  if (b === 0) {
+    return "LMAO";
+  }
   return a / b;
 }

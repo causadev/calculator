@@ -12,8 +12,6 @@ body {
   margin: 0;
 }
 
-/* Responsive Images */
-
 embed,
 iframe,
 img,
@@ -58,20 +56,10 @@ h6 {
   display: block;
 }
 
-/* Removes all decimals and discs from lists */
-
 ol,
 ul {
   list-style: none;
 }
-
-/* 
- * Completely resets form items
- * ----------------------------
- * Super hard reset that removes all borders
- * and radiuses of all form items (including
- * checkboxes and radios)
- */
 
 input,
 textarea,
@@ -111,14 +99,14 @@ html {
 
 body {
   align-items: center;
-  background-color: #0d1117;
+  background-color: #202124;
   display: flex;
   height: 100vh;
   justify-content: center;
 }
 
 .container {
-  max-width: 20em;
+  min-width: 20em;
 }
 
 .container > p {
@@ -135,16 +123,17 @@ body {
   overflow: hidden;
 }
 
-.calculatorDisplay {
-  background-color: #222222;
+.display {
+  background-color: #000000;
   color: #fff;
   font-size: 1.714285714em;
   padding: 0.5em 0.75em;
   text-align: right;
+  min-height: 2.5em;
 }
 
 .calculator__keys {
-  background-color: #999;
+  background-color: #212529;
   display: grid;
   grid-gap: 1px;
   grid-template-columns: repeat(4, 1fr);
@@ -171,17 +160,17 @@ body {
   z-index: 1;
 }
 
-#key--operator {
+.operator {
   background-color: #eee;
 }
 
-.equalsKey {
-  background-image: linear-gradient(to bottom, #fe886a, #ff7033);
+.equal {
+  background-color: #aecbfa;
   grid-column: -2;
   grid-row: 2 / span 4;
 }
-
 .clear {
   background-color: #eee;
   grid-column: 2 / span 2;
+  font-size: 22px;
 }
