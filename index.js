@@ -17,6 +17,14 @@ clear.addEventListener("click", () => {
   display.textContent = "";
 });
 
+function clear0Division() {
+  firstNumber = "";
+  secondNumber = "";
+  operator = "";
+  displayValue = "";
+  display.textContent = "LMAO";
+}
+
 equals.addEventListener("click", () => {
   secondNumber = displayValue;
   result = operate(firstNumber, operator, secondNumber);
@@ -52,10 +60,9 @@ operators.forEach((op) =>
 
 numbers.forEach((number) =>
   number.addEventListener("click", (e) => {
-      const key = e.target.textContent;
-      displayValue += key;
-      display.textContent = displayValue;
-    
+    const key = e.target.textContent;
+    displayValue += key;
+    display.textContent = displayValue;
   })
 );
 
@@ -87,7 +94,7 @@ function multiply(a, b) {
 
 function divide(a, b) {
   if (b === 0) {
-    return "LMAO";
+    return clear0Division()
   }
   return a / b;
 }
