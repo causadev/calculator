@@ -9,6 +9,12 @@ const operators = document.querySelectorAll(".operator");
 const equals = document.querySelector(".equal");
 const clear = document.querySelector(".clear");
 
+function roundResult() {
+  return Math.round(result * 1000000) / 1000000;
+}
+
+console.log(roundResult(3.33333333333));
+
 clear.addEventListener("click", () => {
   firstNumber = "";
   secondNumber = "";
@@ -28,6 +34,11 @@ function clear0Division() {
 equals.addEventListener("click", () => {
   secondNumber = displayValue;
   result = operate(firstNumber, operator, secondNumber);
+  if (result === "") {
+    return;
+  } else {
+    result = roundResult(result);
+  }
   if (
     firstNumber === "" ||
     secondNumber === "" ||
@@ -36,7 +47,7 @@ equals.addEventListener("click", () => {
   ) {
     return;
   } else {
-    return (display.textContent = result);
+    display.textContent = result;
   }
 });
 
@@ -94,7 +105,7 @@ function multiply(a, b) {
 
 function divide(a, b) {
   if (b === 0) {
-    return clear0Division()
+    return clear0Division();
   }
   return a / b;
 }
