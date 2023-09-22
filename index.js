@@ -2,80 +2,47 @@ let firstNumber = "";
 let secondNumber = "";
 let operator = "";
 let displayValue = "";
-let result = "";
 const display = document.querySelector(".display");
 const numbers = document.querySelectorAll(".number");
 const operators = document.querySelectorAll(".operator");
 const equals = document.querySelector(".equal");
 const clear = document.querySelector(".clear");
+numbers.forEach((number) => number.addEventListener("click", appendNumbers));
+operators.forEach((op) => op.addEventListener("click", setOperation));
+equals.addEventListener("click", evaluate);
+clear.addEventListener("click", clearDisplay);
 
-function roundResult() {
-  return Math.round(result * 1000000) / 1000000;
-}
-
-console.log(roundResult(3.33333333333));
-
-clear.addEventListener("click", () => {
+function clearDisplay() {
+  display.textContent = "0";
   firstNumber = "";
   secondNumber = "";
   operator = "";
   displayValue = "";
-  display.textContent = "";
-});
-
-function clear0Division() {
-  firstNumber = "";
-  secondNumber = "";
-  operator = "";
-  displayValue = "";
-  display.textContent = "LMAO";
 }
 
-equals.addEventListener("click", () => {
+function evaluate() {
+  if (firstNumber === "") return;
   secondNumber = displayValue;
-  result = operate(firstNumber, operator, secondNumber);
-  if (result === "") {
-    return;
-  } else {
-    result = roundResult(result);
+  display.textContent = operate(firstNumber, operator, secondNumber);
+  firstNumber = "";
+  displayValue = "";
+}
+
+function setOperation(e) {
+  if (firstNumber !== "") evaluate();
+  firstNumber = displayValue;
+  operator = e.target.textContent;
+  firstNumber = display.textContent;
+  displayValue = "";
+}
+
+function appendNumbers(e) {
+  if (displayValue === "0") {
+    clearDisplay();
   }
-  if (
-    firstNumber === "" ||
-    secondNumber === "" ||
-    operator === "" ||
-    displayValue === ""
-  ) {
-    return;
-  } else {
-    display.textContent = result;
-  }
-});
-
-operators.forEach((op) =>
-  op.addEventListener("click", (e) => {
-    const opKey = e.target.textContent;
-    if (firstNumber === "") {
-      firstNumber = displayValue;
-    } else {
-      secondNumber = displayValue;
-      result = operate(firstNumber, operator, secondNumber);
-      display.textContent = result;
-      firstNumber = result;
-      secondNumber = "";
-    }
-
-    operator = opKey;
-    displayValue = "";
-  })
-);
-
-numbers.forEach((number) =>
-  number.addEventListener("click", (e) => {
-    const key = e.target.textContent;
-    displayValue += key;
-    display.textContent = displayValue;
-  })
-);
+  displayValue += e.target.textContent;
+  display.textContent = displayValue;
+}
 
 function operate(n1, operator, n2) {
   n1 = Number(n1);
@@ -87,7 +54,12 @@ function operate(n1, operator, n2) {
   } else if (operator === "x") {
     return multiply(n1, n2);
   } else if (operator === "÷") {
+    if (n2 === 0) {
+      return "STUPID";
+    }
     return divide(n1, n2);
+  } else {
+    return null;
   }
 }
 
@@ -104,8 +76,5 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-  if (b === 0) {
-    return clear0Division();
-  }
   return a / b;
 }

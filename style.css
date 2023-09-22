@@ -91,7 +91,8 @@ body {
 }
 
 .calculator__keys > * {
-  background-color: #fff;
+  background-color: #181a1b;
+  color: #fff;
   padding: 0.5em 1.25em;
   position: relative;
   text-align: center;
@@ -112,16 +113,16 @@ body {
 }
 
 .operator {
-  background-color: #eee;
+  background-color: #222426;
 }
 
 .equal {
-  background-color: #aecbfa;
+  background-color: #303436;
   grid-column: -2;
   grid-row: 2 / span 4;
 }
 .clear {
-  background-color: #eee;
+  background-color: #222426;
   grid-column: 2 / span 2;
   font-size: 22px;
 }
