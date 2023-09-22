@@ -37,7 +37,7 @@ function evaluate() {
 
 // Function to set the operator and update firstNumber
 function setOperation(e) {
-  if (firstNumber !== "") evaluate();
+  if (firstNumber !== "") evaluate(); // If there's a first number, evaluate the expression
   firstNumber = displayValue; // If there's a first number, evaluate the expression
   operator = e.target.textContent; // Set the first number to the current display value
   firstNumber = display.textContent; // Set the operator based on the button clicked
