@@ -9,6 +9,8 @@ const numbers = document.querySelectorAll(".number");
 const operators = document.querySelectorAll(".operator");
 const equals = document.querySelector(".equal");
 const clear = document.querySelector(".clear");
+const decimal = document.querySelector(".decimal");
+const backSpace = document.querySelector(".delete");
 // Add event listeners to number buttons
 numbers.forEach((number) => number.addEventListener("click", appendNumbers));
 // Add event listeners to operator buttons
@@ -17,6 +19,34 @@ operators.forEach((op) => op.addEventListener("click", setOperation));
 equals.addEventListener("click", evaluate);
 // Add event listener to the clear button
 clear.addEventListener("click", clearDisplay);
+// Add event listener to the decimal button
+decimal.addEventListener("click", appendDecimal);
+// Add event listener to the backspace button
+backSpace.addEventListener("click", deleteNumber);
+
+// Function to round result
+function roundResult(number) {
+  return Math.round(number * 1000) / 1000;
+}
+
+// Function to delete numbers
+function deleteNumber() {
+  display.textContent = display.textContent.toString().slice(0, -1);
+  if (display.textContent === "") {
+    clearDisplay();
+  }
+}
+
+// Function to append decimal point
+function appendDecimal() {
+  if (displayValue === "") {
+    displayValue = "0";
+  }
+  if (!display.textContent.includes(".")) {
+    displayValue += ".";
+    display.textContent = displayValue;
+  }
+}
 
 // Function to clear the calculator display and state
 function clearDisplay() {
@@ -26,11 +56,17 @@ function clearDisplay() {
   operator = "";
   displayValue = "";
 }
+
 // Function to evaluate and display the result
 function evaluate() {
   if (firstNumber === "") return; // Don't perform calculation if firstNumber is empty
+  if (operator === "÷" && display.textContent === "0") {
+    return (display.textContent = "stupid");
+  }
   secondNumber = displayValue; // Set the second number to the current display value
-  display.textContent = operate(firstNumber, operator, secondNumber); // Perform the calculation and display the result
+  display.textContent = roundResult(
+    operate(firstNumber, operator, secondNumber)
+  ); // Perform the calculation and display the result
   firstNumber = ""; // Clear the first number
   displayValue = ""; // Clear the display value
 }
@@ -65,7 +101,7 @@ function operate(n1, operator, n2) {
     return multiply(n1, n2);
   } else if (operator === "÷") {
     if (n2 === 0) {
-      return "STUPID"; // Handle division by zero
+      return null; // Handle division by zero
     }
     return divide(n1, n2);
   } else {
