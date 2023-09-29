@@ -61,7 +61,7 @@ function clearDisplay() {
 function evaluate() {
   if (firstNumber === "") return; // Don't perform calculation if firstNumber is empty
   if (operator === "÷" && display.textContent === "0") {
-    return (display.textContent = "stupid");
+    return (display.textContent = "lol🤣");
   }
   secondNumber = displayValue; // Set the second number to the current display value
   display.textContent = roundResult(
